@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
@@ -15,10 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
-      <body className="bg-slate-950 text-white">
+      <body className="flex min-h-screen flex-col bg-slate-950 text-white">
+
         <Navbar />
 
-        <div className="relative min-h-[calc(100vh-73px)] overflow-hidden bg-slate-950">
+        <div className="relative flex-1 overflow-hidden bg-slate-950">
 
           {/* Poświata – prawy górny róg */}
           <div className="pointer-events-none absolute -right-32 -top-32 z-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
@@ -34,7 +36,9 @@ export default function RootLayout({
         </div>
 
         <Footer />
+
       </body>
     </html>
   );
 }
+
