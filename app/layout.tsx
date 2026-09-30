@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "./components/Navbar"
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
@@ -15,10 +15,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
-      <body className="bg-slate-50 text-slate-900">
+      <body className="bg-slate-950 text-white">
         <Navbar />
 
-        {children}
+        <div className="relative min-h-[calc(100vh-73px)] overflow-hidden bg-slate-950">
+
+          {/* Poświata – prawy górny róg */}
+          <div className="pointer-events-none absolute -right-32 -top-32 z-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl" />
+
+          {/* Poświata – lewy dolny róg */}
+          <div className="pointer-events-none absolute -bottom-32 -left-32 z-0 h-96 w-96 rounded-full bg-indigo-500/10 blur-3xl" />
+
+          {/* Zawartość stron */}
+          <div className="relative z-10">
+            {children}
+          </div>
+
+        </div>
 
         <Footer />
       </body>
