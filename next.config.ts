@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "www.pzs1.pl",
       },
+      {
+        protocol: "https",
+        hostname: "pub-3a4ddaf0210a4385b7c8258ce45cbf6b.r2.dev",
+      },
     ],
   },
   allowedDevOrigins: [

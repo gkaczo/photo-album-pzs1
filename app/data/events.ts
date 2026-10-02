@@ -10,6 +10,7 @@ export type Event = {
 export const events: Event[] = [
 
   {
+    //slug musi byc taki jak nazwa fodleru w cloudflare !!!
     slug: "dogmagedon",
     year: "2026-2027",
     title: "Dogmagedon",
@@ -19,7 +20,7 @@ export const events: Event[] = [
   },
 
   {
-    slug: "oboz-klasa policyjna",
+    slug: "oboz-klasa-policyjna",
     year: "2026-2027",
     title: "Oboz szkoleniowy klasy policyjnej",
     description: "Oboz szkoleniowy klasy policyjnej",

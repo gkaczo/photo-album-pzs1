@@ -1,5 +1,7 @@
 import PhotoGrid from "@/app/components/PhotoGrid";
-import { photoGalleries } from "@/app/data/photos";
+//import { photoGalleries } from "@/app/data/photos";
+import { getGalleryPhotos } from "@/app/actions/galleryActions";
+import { events } from "@/app/data/events";
 import Link from "next/link";
 
 
@@ -16,13 +18,20 @@ export default async function EventGalleryPage({
 
   const { rok, wydarzenie } = await params;
 
-  const gallery = photoGalleries.find(
+  // const gallery = photoGalleries.find(
+  //   (item) =>
+  //     item.year === rok &&
+  //     item.event === wydarzenie
+  // );
+
+  // if (!gallery) 
+  const event = events.find(
     (item) =>
       item.year === rok &&
-      item.event === wydarzenie
+      item.slug === wydarzenie
   );
 
-  if (!gallery) {
+  if (!event) {
     return (
       <main className="mx-auto max-w-7xl px-6 py-20">
 
@@ -41,6 +50,13 @@ export default async function EventGalleryPage({
     );
   }
 
+  // NOWE: pobieramy listę zdjęć z Cloudflare R2
+  // zamiast korzystać z photoGalleries z data/photos.ts
+  const photos = await getGalleryPhotos(
+    rok,
+    wydarzenie
+  );
+
   return (
     <main className="min-h-screen bg-slate-50">
 
@@ -56,7 +72,9 @@ export default async function EventGalleryPage({
           </Link>
 
           <h1 className="mt-6 text-4xl font-bold md:text-5xl">
-            {gallery.title}
+            {/* ZMIANA: gallery.title → event.title
+                Dane wydarzenia nadal pochodzą z events.ts */}
+            {event.title}
           </h1>
 
           <p className="mt-4 text-slate-300">
@@ -69,7 +87,10 @@ export default async function EventGalleryPage({
 
       <section className="mx-auto max-w-7xl px-6 py-16">
 
-        <PhotoGrid photos={gallery.photos} />
+        {/* ZMIANA: gallery.photos → zdjęcia pobrane z Cloudflare R2 */}
+        <PhotoGrid
+          photos={photos.map((photo) => photo.url)}
+        />
 
       </section>
 
