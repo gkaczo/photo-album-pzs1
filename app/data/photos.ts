@@ -1,3 +1,5 @@
+//niepotrzebne juz
+
 export type PhotoGallery = {
   year: string;
   event: string;
