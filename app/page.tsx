@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const sections = [
   {
@@ -69,10 +70,13 @@ export default function HomePage() {
 
           <div className="relative aspect-[16/7] min-h-56 overflow-hidden sm:min-h-80">
 
-            <img
+            <Image
               src="/images/pzs_hero1.jpg"
               alt="Powiatowy Zespół Szkół nr 1 w Kościerzynie"
-              className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.02]"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover transition duration-700 group-hover:scale-[1.02]"
             />
 
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -174,7 +178,7 @@ export default function HomePage() {
       </section>
 
 
-      
+
 
     </main>
   );
