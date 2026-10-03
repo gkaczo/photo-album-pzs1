@@ -24,3 +24,47 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* animacja kroniki */
+.page {
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.page-next {
+  animation: pageNext 650ms ease-in-out forwards;
+}
+
+.page-prev {
+  animation: pagePrev 650ms ease-in-out forwards;
+}
+
+@keyframes pageNext {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  45% {
+    transform: rotateY(-85deg);
+  }
+
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes pagePrev {
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  45% {
+    transform: rotateY(85deg);
+  }
+
+  100% {
+    transform: rotateY(0deg);
+  }
+}
