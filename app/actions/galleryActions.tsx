@@ -24,6 +24,7 @@ export type R2Photo = {
   url: string;
 };
 
+//galeria
 export async function getGalleryPhotos(
   year: string,
   event: string
@@ -63,4 +64,47 @@ export async function getGalleryPhotos(
       })) ?? [];
 
   return photos;
+}
+
+//kroniki
+export async function getChroniclePages(
+  year: string
+): Promise<R2Photo[]> {
+
+  const prefix = `kroniki/${year}/`;
+
+  const response = await r2.send(
+    new ListObjectsV2Command({
+      Bucket: BUCKET,
+      Prefix: prefix,
+    })
+  );
+
+  const pages =
+    response.Contents
+      ?.filter((object) => {
+        if (!object.Key) return false;
+
+        const key = object.Key.toLowerCase();
+
+        return (
+          key.endsWith(".jpg") ||
+          key.endsWith(".jpeg") ||
+          key.endsWith(".png") ||
+          key.endsWith(".webp")
+        );
+      })
+      .sort((a, b) =>
+        (a.Key ?? "").localeCompare(
+          b.Key ?? "",
+          undefined,
+          { numeric: true }
+        )
+      )
+      .map((object) => ({
+        key: object.Key!,
+        url: `${PUBLIC_URL}/${object.Key}`,
+      })) ?? [];
+
+  return pages;
 }

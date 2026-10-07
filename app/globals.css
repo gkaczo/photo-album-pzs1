@@ -26,45 +26,123 @@ body {
 }
 
 
-/* animacja kroniki */
-.page {
-  transform-origin: left center;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
+
+
+/* =========================================================
+   KRONIKA
+   ========================================================= */
+
+.chronicle {
+  isolation: isolate;
 }
 
-.page-next {
-  animation: pageNext 650ms ease-in-out forwards;
+
+/* =========================================================
+   ZAWARTOŚĆ STRONY
+   ========================================================= */
+
+.chronicle-content {
+  z-index: 5;
+  will-change: transform, opacity;
 }
 
-.page-prev {
-  animation: pagePrev 650ms ease-in-out forwards;
+
+/* =========================================================
+   STARA STRONA – NASTĘPNA
+   przesuwa się delikatnie w lewo
+   ========================================================= */
+
+.animate-next {
+  animation: contentNext 450ms ease-out forwards;
 }
 
-@keyframes pageNext {
-  0% {
-    transform: rotateY(0deg);
+@keyframes contentNext {
+  from {
+    transform: translateX(0);
+    opacity: 1;
   }
 
-  45% {
-    transform: rotateY(-85deg);
-  }
-
-  100% {
-    transform: rotateY(0deg);
+  to {
+    transform: translateX(-35px);
+    opacity: 0;
   }
 }
 
-@keyframes pagePrev {
-  0% {
-    transform: rotateY(0deg);
+
+/* =========================================================
+   NOWA STRONA – NASTĘPNA
+   ========================================================= */
+
+.animate-next-new {
+  z-index: 6;
+  animation: contentNextNew 450ms ease-out forwards;
+}
+
+@keyframes contentNextNew {
+  from {
+    transform: translateX(35px);
+    opacity: 0;
   }
 
-  45% {
-    transform: rotateY(85deg);
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   STARA STRONA – POPRZEDNIA
+   ========================================================= */
+
+.animate-prev {
+  animation: contentPrev 450ms ease-out forwards;
+}
+
+@keyframes contentPrev {
+  from {
+    transform: translateX(0);
+    opacity: 1;
   }
 
-  100% {
-    transform: rotateY(0deg);
+  to {
+    transform: translateX(35px);
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   NOWA STRONA – POPRZEDNIA
+   ========================================================= */
+
+.animate-prev-new {
+  z-index: 6;
+  animation: contentPrevNew 450ms ease-out forwards;
+}
+
+@keyframes contentPrevNew {
+  from {
+    transform: translateX(-35px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   REDUKCJA RUCHU
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-next,
+  .animate-next-new,
+  .animate-prev,
+  .animate-prev-new {
+    animation-duration: 1ms;
   }
 }

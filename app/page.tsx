@@ -68,7 +68,7 @@ export default function HomePage() {
         {/* STATYCZNE ZDJĘCIE */}
         <div className="group relative mt-12 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900">
 
-          <div className="relative aspect-[16/7] min-h-56 overflow-hidden sm:min-h-80">
+          <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/7]">
 
             <Image
               src="/images/pzs_hero1.jpg"
